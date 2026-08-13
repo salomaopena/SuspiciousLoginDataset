@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+type: dataset
+title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Logins in Google Workspace"
+authors:
+  - family-names: "Pena"
+    given-names: "Salomão Bento Nilo"
+    affiliation: "Universidade Federal de Uberlândia (UFU)"
+    # orcid: "https://orcid.org/[TO FILL IN, if available]"
+  - family-names: "Nomura"
+    given-names: "Shigueo"
+    affiliation: "Universidade Federal de Uberlândia (UFU)"
+    # orcid: "https://orcid.org/[TO FILL IN, if available]"
+  - family-names: "Quincozes"
+    given-names: "Silvio Ereno"
+    affiliation: "[AFFILIATION TO CONFIRM]"
+    # orcid: "https://orcid.org/[TO FILL IN, if available]"
+repository-code: "[CODE REPOSITORY URL TO FILL IN]"
+url: "[DATASET REPOSITORY URL TO FILL IN]"
+abstract: >-
+  An anonymized benchmark of successful Google Workspace login events,
+  labeled as suspicious or not by Google's own operational signal
+  (is_suspicious), combining data from two higher-education institutions.
+  73,528 events, 36,691 pseudonymized users, spanning December 2025 to
+  August 2026. Includes 38 engineered behavioral, temporal, and
+  geographic features plus an empirically-validated risk score. The
+  is_suspicious label is an operational signal, not a forensic
+  confirmation of phishing, credential stuffing, brute force, or actual
+  account compromise.
+keywords:
+  - cloud security
+  - identity security
+  - anomaly detection
+  - Google Workspace
+  - suspicious login
+  - cybersecurity dataset
+  - higher education
+license: CC-BY-NC-4.0
+version: "1.0.0"
+date-released: "[RELEASE DATE TO FILL IN, YYYY-MM-DD format]"
+# doi: "[DOI TO FILL IN after Zenodo registration]"
+
+preferred-citation:
+  type: dataset
+  title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Logins in Google Workspace"
+  authors:
+    - family-names: "Pena"
+      given-names: "Salomão Bento Nilo"
+      affiliation: "Universidade Federal de Uberlândia (UFU)"
+    - family-names: "Nomura"
+      given-names: "Shigueo"
+      affiliation: "Universidade Federal de Uberlândia (UFU)"
+    - family-names: "Quincozes"
+      given-names: "Silvio Ereno"
+      affiliation: "[AFFILIATION TO CONFIRM]"
+  year: 2026
+  # doi: "[DOI TO FILL IN after Zenodo registration]"

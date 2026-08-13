@@ -1,0 +1,103 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "SuspiciousLogin Dataset Processing and Benchmark Code",
+  "description": "Processing pipeline (data/processed.py) that combines raw Google Workspace login-audit extractions from one or more institutions into a pseudonymized, feature-engineered public/restricted dataset pair, plus reference machine-learning benchmark models (src/benchmark_ml.py: Logistic Regression, Decision Tree, Random Forest, XGBoost, LightGBM, Isolation Forest) evaluated against an empirically-derived risk_score baseline, with an automated test suite (tests/test_processed.py).",
+  "identifier": "[DOI TO FILL IN after Zenodo registration]",
+  "codeRepository": "[CODE REPOSITORY URL TO FILL IN]",
+  "issueTracker": "[ISSUE TRACKER URL TO FILL IN, if applicable]",
+  "license": "https://opensource.org/licenses/MIT",
+  "version": "1.0.0",
+  "dateCreated": "2026-08-12",
+  "datePublished": "[RELEASE DATE TO FILL IN, YYYY-MM-DD format]",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "Python",
+    "version": "3.x",
+    "url": "https://www.python.org"
+  },
+  "runtimePlatform": "Python 3.10+",
+  "operatingSystem": [
+    "Windows",
+    "Linux",
+    "macOS"
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "pandas",
+      "name": "pandas"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "numpy",
+      "name": "numpy"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "scikit-learn",
+      "name": "scikit-learn"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xgboost",
+      "name": "xgboost"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "lightgbm",
+      "name": "lightgbm"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "python-dotenv",
+      "name": "python-dotenv"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "pytest",
+      "name": "pytest"
+    }
+  ],
+  "keywords": [
+    "cloud security",
+    "identity security",
+    "anomaly detection",
+    "Google Workspace",
+    "data pseudonymization",
+    "machine learning benchmark",
+    "risk scoring"
+  ],
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Salomão Bento Nilo",
+      "familyName": "Pena",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Universidade Federal de Uberlândia (UFU)"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Shigueo",
+      "familyName": "Nomura",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Universidade Federal de Uberlândia (UFU)"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Silvio Ereno",
+      "familyName": "Quincozes",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "[AFFILIATION TO CONFIRM]"
+      }
+    }
+  ],
+  "relatedLink": [
+    "[DATASET REPOSITORY URL TO FILL IN]"
+  ]
+}

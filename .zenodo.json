@@ -1,0 +1,43 @@
+{
+  "title": "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Logins in Google Workspace",
+  "description": "An anonymized benchmark of successful Google Workspace login events, labeled as suspicious or not by Google's own operational signal (is_suspicious), combining data from two higher-education institutions. 73,528 events, 36,691 pseudonymized users, spanning December 2025 to August 2026. Includes 38 engineered behavioral, temporal, and geographic features, an empirically-validated risk score (logistic-regression-derived, chronologically validated), and reference machine-learning benchmark results (Logistic Regression, Decision Tree, Random Forest, XGBoost, LightGBM, Isolation Forest). The is_suspicious label is an operational signal supplied by Google Workspace, not a forensic confirmation of phishing, credential stuffing, brute force, or actual account compromise. Full methodology, data dictionary, schema, and privacy/anonymization report included, in Portuguese and English.",
+  "version": "1.0.0",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "CC-BY-NC-4.0",
+  "language": "eng",
+  "keywords": [
+    "cloud security",
+    "identity security",
+    "anomaly detection",
+    "Google Workspace",
+    "suspicious login",
+    "cybersecurity dataset",
+    "higher education",
+    "machine learning benchmark"
+  ],
+  "creators": [
+    {
+      "name": "Pena, Salomão Bento Nilo",
+      "affiliation": "Universidade Federal de Uberlândia (UFU)"
+    },
+    {
+      "name": "Nomura, Shigueo",
+      "affiliation": "Universidade Federal de Uberlândia (UFU)"
+    },
+    {
+      "name": "Quincozes, Silvio Ereno",
+      "affiliation": "[AFFILIATION TO CONFIRM]"
+    }
+  ],
+  "contributors": [],
+  "related_identifiers": [
+    {
+      "identifier": "[CODE REPOSITORY URL TO FILL IN]",
+      "relation": "isSupplementedBy",
+      "resource_type": "software"
+    }
+  ],
+  "communities": [],
+  "notes": "The restricted schema (with precise timestamps, city, coordinates, and network identifiers) is never published and is not part of this record -- only the public schema, safe demo sample, code, and documentation are included. See PRIVACY_ANONYMIZATION_REPORT.md for the full data governance methodology."
+}
