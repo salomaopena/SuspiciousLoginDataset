@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this dataset, please cite it as below."
 type: dataset
-title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Logins in Google Workspace"
+title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Login Events from Google Workspace"
 authors:
   - family-names: "Pena"
     given-names: "Salomão Bento Nilo"
@@ -15,7 +15,7 @@ authors:
     given-names: "Silvio Ereno"
     affiliation: "[AFFILIATION TO CONFIRM]"
     # orcid: "https://orcid.org/[TO FILL IN, if available]"
-repository-code: "[CODE REPOSITORY URL TO FILL IN]"
+repository-code: "https://github.com/salomaopena/SuspiciousLoginDataset"
 url: "[DATASET REPOSITORY URL TO FILL IN]"
 abstract: >-
   An anonymized benchmark of successful Google Workspace login events,
@@ -42,7 +42,7 @@ date-released: "[RELEASE DATE TO FILL IN, YYYY-MM-DD format]"
 
 preferred-citation:
   type: dataset
-  title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Logins in Google Workspace"
+  title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Login Events from Google Workspace"
   authors:
     - family-names: "Pena"
       given-names: "Salomão Bento Nilo"

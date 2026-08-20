@@ -231,16 +231,29 @@ def test_same_actor_gets_same_pseudonym_across_rows(project):
     assert public["actor_pseudo_id"].iloc[0].startswith("U")
 
 
-def test_raw_hash_never_appears_in_either_output(project):
+def test_raw_hash_never_appears_in_public_only_in_restricted_actor_email_hash(project):
+    """actor_email_hash (the raw, unsalted SHA-256 hash) is deliberately
+    kept in the RESTRICTED schema only (added 2026-08-16), specifically
+    to enable correlating login events with the other extracted sources
+    (drive/admin/token/gmail/meet/classroom) by the same raw hash they
+    independently compute. It must never appear in the public schema,
+    and in restricted it must appear ONLY as the actor_email_hash
+    column's own value -- not leaked anywhere else unexpected."""
     rows = [make_row(1, "10:00:00.000", actor="secretactorhash1")]
     write_raw_csv(project / "data" / "raw" / "suspicious_login_logs0.csv", rows)
 
     result = run_processed(project)
     assert result.returncode == 0, result.stderr
     public_text = (project / "data" / "processed" / "suspicious_logins_public_v1.csv").read_text()
-    restricted_text = (project / "data" / "processed" / "suspicious_logins_restricted_v1.csv").read_text()
     assert "secretactorhash1" not in public_text
-    assert "secretactorhash1" not in restricted_text
+
+    restricted = pd.read_csv(project / "data" / "processed" / "suspicious_logins_restricted_v1.csv")
+    assert "actor_email_hash" in restricted.columns
+    assert restricted["actor_email_hash"].iloc[0] == "secretactorhash1"
+    for col in restricted.columns:
+        if col != "actor_email_hash":
+            assert restricted[col].astype(str).str.contains("secretactorhash1").sum() == 0, (
+                f"raw hash unexpectedly leaked into column {col}")
 
 
 # ============================================================
@@ -266,7 +279,8 @@ def test_restricted_schema_includes_the_columns_public_lacks(project):
     result = run_processed(project)
     assert result.returncode == 0, result.stderr
     restricted = pd.read_csv(project / "data" / "processed" / "suspicious_logins_restricted_v1.csv")
-    for expected in ("ip_city", "latitude", "longitude", "network_pseudo_id", "event_time"):
+    for expected in ("ip_city", "latitude", "longitude", "network_pseudo_id",
+                     "event_time", "actor_email_hash"):
         assert expected in restricted.columns
 
 

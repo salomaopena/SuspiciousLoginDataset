@@ -1,0 +1,10 @@
+feature,odds_ratio,ci_low,ci_high
+is_night_login,4.186,3.94,4.447
+is_weekend,0.77,0.716,0.827
+is_new_country,1.512,1.43,1.598
+country_changed,1.494,1.413,1.579
+continent_changed,1.499,1.417,1.584
+multiple_country_logins_24h,0.4,0.31,0.516
+new_ip,0.685,0.647,0.726
+impossible_travel,1.101,0.649,1.869
+is_business_hours,0.411,0.388,0.434

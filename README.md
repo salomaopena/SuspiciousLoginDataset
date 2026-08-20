@@ -30,9 +30,13 @@ suspiciouslogin-dataset/              (PUBLIC -- this repository)
 ├── data/
 │   ├── suspicious_logins_public_v1.csv
 │   ├── suspicious_logins_demo_sample.csv     (500-row sample)
-│   └── benchmark_results.csv
+│   ├── benchmark_results.csv                 (Article 3)
+│   ├── article1_summary_statistics.csv
+│   └── article2_odds_ratios.csv
 ├── notebooks/
-│   └── benchmark_notebook.ipynb       (Kaggle-ready, with plots)
+│   ├── benchmark_notebook.ipynb        (Article 3, Kaggle-ready, with plots)
+│   ├── article1_statistics.ipynb       (coverage, Gini, Lorenz curve, data quality)
+│   └── article2_empirical_patterns.ipynb (temporal/geographic patterns, statistical tests)
 ├── src/
 │   ├── processed.py                  (processing pipeline)
 │   └── benchmark_ml.py               (reference models)
@@ -44,7 +48,8 @@ suspiciouslogin-dataset/              (PUBLIC -- this repository)
     ├── RISK_SCORE_METHODOLOGY_EN.md
     ├── PRIVACY_ANONYMIZATION_REPORT_EN.md
     ├── DATA_AUDIT_REPORT_EN.md
-    └── BENCHMARK_RESULTS_EN.md
+    ├── BENCHMARK_RESULTS_EN.md
+    └── figures/                       (PNGs referenced by the two statistics notebooks)
 
 suspiciouslogin-dataset-private/       (PRIVATE -- never published)
 ├── .env                               (HMAC_SECRET_KEY_* keys, never committed)
@@ -78,7 +83,7 @@ export HMAC_SECRET_KEY_<INSTITUTION_A>="<secret-key-a>"
 export HMAC_SECRET_KEY_<INSTITUTION_B>="<secret-key-b>"
 python src/processed.py
 # generates suspicious_logins_public_v1.csv (copy to the public repo)
-#  and suspicious_logins_restricted_v1.csv (stays private only)
+# and suspicious_logins_restricted_v1.csv (stays private only)
 
 python src/benchmark_ml.py
 # reproduces the results in docs/BENCHMARK_RESULTS_EN.md
@@ -98,7 +103,9 @@ model results.
 
 ## Institutional context
 
-The data combines two higher-education institutions, with a strong geographic presence in Angola and Brazil. The broader research motivation is identity security in educational SaaS/cloud
+The data combines two higher-education institutions, one in Angola and
+another with a strong geographic presence in Brazil. The broader
+research motivation is identity security in educational SaaS/cloud
 environments — **do not claim** that this dataset represents all of
 Africa, all of Brazil, or higher education in general.
 

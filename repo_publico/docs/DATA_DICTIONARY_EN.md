@@ -54,7 +54,7 @@ not as a literal `True`/`False`.
 
 | Column | Type | Description |
 |---|---|---|
-| `login_type` | text | `google_password`, `reauth`, or `exchange` |
+| `login_type` | text | `reauth`, `google_password`, `exchange`, `federated_login`, `session_refresh`, or `admin_login`. The last three were confirmed only at the full two-institution scale (73,528 rows) -- absent or negligible in earlier, smaller samples. `federated_login` denotes SSO via an external identity provider; `session_refresh` denotes an existing session being renewed rather than a fresh interactive login; `admin_login` denotes an administrator console login. |
 | `login_challenge_method` | text, `\|`-separated values | Authentication challenge method(s) used. Consecutive repeated values are collapsed to the distinct set (e.g. `password\|password` → `password`). |
 
 ## Login history

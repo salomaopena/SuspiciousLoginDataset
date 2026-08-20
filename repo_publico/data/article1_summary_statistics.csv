@@ -1,0 +1,12 @@
+metric,value
+Total events,73528.0
+Distinct users,36691.0
+Distinct countries (public),23.0
+Positive rate (%),7.59
+Positive rate 95% CI low (%),7.4
+Positive rate 95% CI high (%),7.78
+Gini index (events per user),0.4963
+Top 1% of users' share of events (%),43.3
+Users with exactly 1 event (%),96.3
+"Missing values, any column",20.0
+Fully duplicate rows,0.0

@@ -20,7 +20,7 @@ Format: CSV, `,` separator, UTF-8 encoding, header on the first line.
 | `ip_country` | string | country name, normalized canonical spelling | yes |
 | `continent` | string | continent name | yes |
 | `ip_version` | int | {4,6} | yes |
-| `login_type` | string | `google_password` \| `reauth` \| `exchange` | no |
+| `login_type` | string | `reauth` \| `google_password` \| `exchange` \| `federated_login` \| `session_refresh` \| `admin_login` | no |
 | `login_challenge_method` | string | `\|`-separated values, no consecutive repeats | yes |
 | `new_ip` | int | {0,1} | no |
 | `distinct_ips_7d` | int | ≥1 | no |
