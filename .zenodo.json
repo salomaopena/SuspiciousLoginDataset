@@ -19,21 +19,21 @@
   "creators": [
     {
       "name": "Pena, Salomão Bento Nilo",
-      "affiliation": "Universidade Federal de Uberlândia (UFU)"
+      "affiliation": "Instituto Superior de Ciências da Educação da Huíla | Universidade Federal de Uberlândia (UFU)"
     },
     {
-      "name": "Nomura, Shigueo",
+      "name": "Miani, Rodrigo Sanches",
       "affiliation": "Universidade Federal de Uberlândia (UFU)"
     },
     {
       "name": "Quincozes, Silvio Erenos",
-      "affiliation": "[AFFILIATION TO CONFIRM]"
+      "affiliation": "Universidade Federal de Uberlândia (UFU)"
     }
   ],
   "contributors": [],
   "related_identifiers": [
     {
-      "identifier": "[CODE REPOSITORY URL TO FILL IN]",
+      "identifier": "https://github.com/salomaopena/SuspiciousLoginDataset/",
       "relation": "isSupplementedBy",
       "resource_type": "software"
     }

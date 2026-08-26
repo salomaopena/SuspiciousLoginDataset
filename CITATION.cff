@@ -6,15 +6,15 @@ authors:
   - family-names: "Pena"
     given-names: "Salomão Bento Nilo"
     affiliation: "Universidade Federal de Uberlândia (UFU)"
-    # orcid: "https://orcid.org/[TO FILL IN, if available]"
-  - family-names: "Nomura"
-    given-names: "Shigueo"
-    affiliation: "Universidade Federal de Uberlândia (UFU)"
-    # orcid: "https://orcid.org/[TO FILL IN, if available]"
+    orcid: "https://orcid.org/0000-0001-5973-0612"
   - family-names: "Quincozes"
     given-names: "Silvio Ereno"
-    affiliation: "[AFFILIATION TO CONFIRM]"
-    # orcid: "https://orcid.org/[TO FILL IN, if available]"
+    affiliation: "Universidade Federal de Uberlândia (UFU)"
+    orcid: "https://orcid.org/0000-0001-6793-4033"
+  - family-names: "Miani"
+    given-names: "Rodrigo Sanches"
+    affiliation: "Universidade Federal de Uberlândia (UFU)"
+    orcid: "https://orcid.org/0000-0002-8176-8040"
 repository-code: "https://github.com/salomaopena/SuspiciousLoginDataset"
 url: "[DATASET REPOSITORY URL TO FILL IN]"
 abstract: >-
@@ -37,7 +37,7 @@ keywords:
   - higher education
 license: CC-BY-NC-4.0
 version: "1.0.0"
-date-released: "[RELEASE DATE TO FILL IN, YYYY-MM-DD format]"
+date-released: "2026-08-18"
 # doi: "[DOI TO FILL IN after Zenodo registration]"
 
 preferred-citation:
@@ -47,11 +47,11 @@ preferred-citation:
     - family-names: "Pena"
       given-names: "Salomão Bento Nilo"
       affiliation: "Universidade Federal de Uberlândia (UFU)"
-    - family-names: "Nomura"
-      given-names: "Shigueo"
-      affiliation: "Universidade Federal de Uberlândia (UFU)"
     - family-names: "Quincozes"
       given-names: "Silvio Ereno"
-      affiliation: "[AFFILIATION TO CONFIRM]"
+      affiliation: "Universidade Federal de Uberlândia (UFU)"
+    - family-names: "Miani"
+      given-names: "Rodrigo Sanches"
+      affiliation: "Universidade Federal de Uberlândia (UFU)"
   year: 2026
   # doi: "[DOI TO FILL IN after Zenodo registration]"

@@ -4,19 +4,19 @@
   "name": "SuspiciousLogin Dataset Processing and Benchmark Code",
   "description": "Processing pipeline (data/processed.py) that combines raw Google Workspace login-audit extractions from one or more institutions into a pseudonymized, feature-engineered public/restricted dataset pair, plus reference machine-learning benchmark models (src/benchmark_ml.py: Logistic Regression, Decision Tree, Random Forest, XGBoost, LightGBM, Isolation Forest) evaluated against an empirically-derived risk_score baseline, with an automated test suite (tests/test_processed.py).",
   "identifier": "[DOI TO FILL IN after Zenodo registration]",
-  "codeRepository": "[CODE REPOSITORY URL TO FILL IN]",
-  "issueTracker": "[ISSUE TRACKER URL TO FILL IN, if applicable]",
+  "codeRepository": "https://orcid.org/0000-0002-8176-8040",
+  "issueTracker": "https://github.com/salomaopena/SuspiciousLoginDataset/issue",
   "license": "https://opensource.org/licenses/MIT",
   "version": "1.0.0",
   "dateCreated": "2026-08-12",
-  "datePublished": "[RELEASE DATE TO FILL IN, YYYY-MM-DD format]",
+  "datePublished": "2026-08-18",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "Python",
     "version": "3.x",
     "url": "https://www.python.org"
   },
-  "runtimePlatform": "Python 3.10+",
+  "runtimePlatform": "Python 3.12+",
   "operatingSystem": [
     "Windows",
     "Linux",
@@ -75,16 +75,7 @@
       "familyName": "Pena",
       "affiliation": {
         "@type": "Organization",
-        "name": "Universidade Federal de Uberlândia (UFU)"
-      }
-    },
-    {
-      "@type": "Person",
-      "givenName": "Shigueo",
-      "familyName": "Nomura",
-      "affiliation": {
-        "@type": "Organization",
-        "name": "Universidade Federal de Uberlândia (UFU)"
+        "name": " Instituto Superior de Ciências da Educação da Huíla | Universidade Federal de Uberlândia (UFU)"
       }
     },
     {
@@ -93,7 +84,16 @@
       "familyName": "Quincozes",
       "affiliation": {
         "@type": "Organization",
-        "name": "[AFFILIATION TO CONFIRM]"
+        "name": "Universidade Federal de Uberlândia (UFU)"
+      }
+    },
+    {
+      "@type": "Person",
+      "givenName": "Rodrigo Sanches",
+      "familyName": "Miani",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Universidade Federal de Uberlândia (UFU)"
       }
     }
   ],
