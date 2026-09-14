@@ -26,10 +26,10 @@ institutions, 73,528 rows), with the academic vacation period
 
 | Model | AUC-ROC | PR-AUC | Precision | Recall | F1 | False positives / 1,000 logins |
 |---|---|---|---|---|---|---|
-| Logistic Regression | 0.918 | 0.698 | 0.633 | 0.632 | 0.633 | 24.96 |
-| Decision Tree | 0.946 | 0.767 | **0.950** | 0.624 | 0.753 | 2.23 |
-| **Random Forest** | **0.959** | **0.810** | 0.948 | 0.598 | 0.733 | 2.23 |
-| XGBoost | 0.940 | 0.783 | 0.845 | 0.651 | 0.735 | 8.13 |
+| Logistic Regression | 0.946 | 0.776 | 0.807 | 0.663 | 0.728 | 11.63 |
+| Decision Tree | **0.953** | 0.774 | 0.912 | 0.618 | 0.737 | 4.36 |
+| **Random Forest** | **0.963** | 0.826 | 0.890 | 0.663 | 0.760 | 6.02 |
+| XGBoost | **0.963** | 0.783 | 0.845 | 0.651 | 0.735 | 8.13 |
 | LightGBM | 0.947 | 0.787 | 0.801 | **0.669** | 0.729 | 11.32 |
 | Isolation Forest (unsupervised) | 0.766 | 0.175 | 0.256 | 0.517 | 0.342 | 102.54 |
 | `risk_score` (empirical baseline) | 0.624 | 0.095 | 0.106 | 0.050 | 0.068 | 28.44 |
