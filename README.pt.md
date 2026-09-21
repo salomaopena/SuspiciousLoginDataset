@@ -10,7 +10,7 @@ Este documento segue a estrutura exigida pelo Comitê Técnico de Artefatos do S
 
 ## Selos Considerados
 
-Os selos considerados são: **Disponíveis**, **Funcionais**, **Sustentáveis** e **Experimentos Reprodutíveis**.
+Os selos considerados são: **Disponíveis (SeloD)**, **Funcionais (SeloF)**, **Sustentáveis (SeloS)** e **Experimentos Reprodutíveis (SeloR)**.
 
 ## Informações básicas
 
@@ -40,12 +40,68 @@ Todas as dependências são pacotes públicos do PyPI, sem necessidade de creden
 
 Nenhuma. O artefato não executa código com privilégios elevados, não acessa rede além do necessário para instalar dependências públicas, e não interage com nenhum sistema de produção. Os dados distribuídos já estão pseudonimizados e generalizados; nenhuma credencial, chave de API ou informação de acesso ao Google Workspace está presente neste repositório público.
 
+## Structure, in two repositories
+
+Following the rule that raw/sensitive data and code/documentation live
+in separate repositories:
+
+```text
+suspiciouslogin-dataset/              (PUBLIC -- this repository)
+├── README.md
+├── LICENSE-DATASET.txt               (CC BY-NC 4.0, for the data)
+├── LICENSE-CODE.txt                  (MIT, for the code)
+├── CITATION.cff
+├── codemeta.json
+├── .zenodo.json
+├── data/
+│   ├── suspicious_logins_public_v1.csv
+│   ├── suspicious_logins_demo_sample.csv     (500-row sample)
+│   ├── benchmark_results.csv                 (Article 3)
+│   ├── article1_summary_statistics.csv
+│   └── article2_odds_ratios.csv
+├── notebooks/
+│   ├── benchmark_notebook.ipynb        (Article 3, Kaggle-ready, with plots)
+│   ├── article1_statistics.ipynb       (coverage, Gini, Lorenz curve, data quality)
+│   └── article2_empirical_patterns.ipynb (temporal/geographic patterns, statistical tests)
+├── src/
+│   ├── processed.py                  (processing pipeline)
+│   └── benchmark_ml.py               (reference models)
+├── tests/
+│   └── test_processed.py             (23 automated tests)
+└── docs/
+    ├── DATA_DICTIONARY_EN.md
+    ├── SCHEMA_EN.md
+    ├── RISK_SCORE_METHODOLOGY_EN.md
+    ├── PRIVACY_ANONYMIZATION_REPORT_EN.md
+    ├── DATA_AUDIT_REPORT_EN.md
+    ├── BENCHMARK_RESULTS_EN.md
+    └── figures/                       (PNGs referenced by the two statistics notebooks)
+
+suspiciouslogin-dataset-private/       (PRIVATE -- never published)
+├── .env                               (HMAC_SECRET_KEY_* keys, never committed)
+├── .gitignore
+├── credentials.json                   (Google API credentials, never committed)
+├── data/
+│   ├── raw/
+│   │   ├── <institution_a>/           (that institution's extraction CSVs)
+│   │   └── <institution_b>/
+│   └── processed/
+│       └── suspicious_logins_restricted_v1.csv
+├── src/
+│   ├── processed.py
+│   ├── benchmark_ml.py
+│   ├── extract_suspicious_logins.py
+│   └── functions.py
+└── tests/
+    └── test_processed.py
+```
+
 ## Instalação
 
 ```bash
 # 1. Clonar o repositório público
-git clone https://github.com/salomaopena/SuspiciousLogin-Dataset.git
-cd SuspiciousLogin-Dataset
+git clone https://github.com/salomaopena/SuspiciousLoginDataset.git
+cd SuspiciousLoginDataset
 
 # 2. Criar um ambiente virtual (recomendado)
 python3 -m venv venv
@@ -82,6 +138,7 @@ As três reivindicações abaixo cobrem os resultados centrais do artigo. Cada u
 **O que reproduz**: a Tabela 1 do artigo, com o desempenho comparativo dos sete modelos sobre o conjunto de teste.
 
 **Comando**:
+
 ```bash
 python3 src/benchmark_ml.py
 ```
@@ -115,6 +172,10 @@ python3 src/benchmark_ml.py
 **Recursos esperados**: menos de 1 GB de RAM; nenhuma GPU.
 
 **Resultado esperado**: ganhos de AUC-ROC entre 0,004 e 0,028 conforme o modelo, nunca ultrapassando 0,963. Um resultado próximo de 1,0 indicaria vazamento de dados entre treino e teste, não sucesso do método.
+
+## Citation
+
+Consulte `CITATION.cff` e `.zenodo.json`.
 
 ## LICENSE
 
