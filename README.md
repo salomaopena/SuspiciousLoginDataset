@@ -1,6 +1,4 @@
-# Project Title
-
-**SuspiciousLogin Dataset and Suspicious Authentication Detection Benchmark in Google Workspace**
+# SuspiciousLogin Dataset and Suspicious Authentication Detection Benchmark in Google Workspace
 
 This artifact accompanies the article "Benchmarking Machine Learning Approaches for Suspicious Login Detection in Google Workspace," which compares seven detection strategies, six machine learning models and one reference risk score, over the *SuspiciousLogin Dataset*, a real collection of 73,528 successful authentication events in Google Workspace, gathered over eight months across two higher education institutions. The artifact includes the public dataset, the processing and training code, and the computational notebooks that reproduce the results reported in the article, including the model comparison, the feature-group ablation study, the user-history segmentation, and the hyperparameter tuning via Optuna.
 
