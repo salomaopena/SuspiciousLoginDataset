@@ -54,7 +54,7 @@ Convenção: `bool (0/1)` indica uma bandeira binária guardada como inteiro
 
 | Coluna | Tipo | Descrição |
 |---|---|---|
-| `login_type` | texto | `google_password`, `reauth`, ou `exchange` |
+| `login_type` | texto | `reauth`, `google_password`, `exchange`, `federated_login`, `session_refresh`, ou `admin_login`. Os três últimos foram confirmados apenas na escala completa de duas instituições (73.528 linhas) — ausíveis ou negligenciáveis em amostras anteriores, mais pequenas. `federated_login` denota SSO via um provedor de identidade externo; `session_refresh` denota uma sessão existente a ser renovada em vez de um login interativo novo; `admin_login` denota um login na consola de administrador. |
 | `login_challenge_method` | texto, valores separados por `\|` | Método(s) de desafio de autenticação usados. Valores repetidos consecutivos colapsados para o conjunto distinto (ex.: `password\|password` → `password`). |
 
 ## Histórico de login

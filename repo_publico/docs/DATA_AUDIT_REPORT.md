@@ -83,3 +83,52 @@ própria API do Google Workspace ou do recurso de contingência
 extracção (ver `extract_suspicious_logins.py::flatten`). Esta
 proveniência não está documentada por linha na versão actual —
 limitação conhecida do conjunto de dados.
+
+## 8. Países com 100% de taxa de suspeita — investigado, não um artefacto
+
+Quatro países com contagens de eventos não triviais apresentam uma
+taxa de suspeita exata de 100%: Argentina (449 eventos), Chile (603),
+Colômbia (411) e México (293). Este padrão foi investigado em detalhe
+em vez de ser aceite à face, dado um fenómeno anterior quase idêntico
+neste projeto que foi rastreado até um *bug* de filtro de extracção
+(ver a correcção da instituição B, já não presente neste conjunto de
+dados).
+
+Confirmado directamente na extracção bruta (não introduzido pelo
+`processed.py`): cada evento nestes quatro países vem de um
+utilizador pseudónimo diferente e de uma rede diferente — sem atores
+ou IPs repetidos em nenhum dos quatro — concentrado numa única grande
+cidade por país (Buenos Aires, Santiago, Bogotá, Cidade do México),
+com métodos de autenticação variados. Este padrão é incompatível com
+uma assinatura orientada por *bot* ou de comprometimento em massa, e é
+consistente antes com cada evento sendo o primeiro login de uma pessoa
+genuinamente distinta de um país que o tráfego institucional deste
+conjunto de dados quase nunca inclui (97% de todos os eventos
+têm origem em Angola ou Brasil). A própria detecção do Google parece
+sinalizar "país essencialmente não visto para esta instituição" de
+forma quase determinística — um caso extremo do padrão mais amplo
+`is_new_country` já confirmado com um *odds ratio* moderado, não
+extremo (1,51, IC 95% [1,43; 1,60]) em todo o conjunto de dados
+(ver a análise empírica do Artigo 2).
+
+**Nota de interpretação para uso posterior**: isto reflete a novidade
+do tráfego institucional em relação à linha de base deste conjunto de
+dados específico, não uma propriedade dos países ou das pessoas que
+façam login a partir deles. Qualquer relatório deste achado deve
+afirmá-lo explicitamente, dado como facilmente uma estatística simples
+de "100% suspeito a partir do país X" pode ser mal lida fora de
+contexto.
+
+## 9. Edge case de qualidade de dados — uma linha com campos derivados em falta
+
+Exactamente uma linha (0,0014% do conjunto de dados) tem campos
+derivados de `event_time` (`event_hour`, `month`, etc.) e campos
+geográficos todos em falta, muito provavelmente por uma falha de
+`event_time` na fonte para esse único evento — no entanto, algumas
+flags de alteração geográfica derivadas (`is_new_country`,
+`country_changed`, `geo_jump`) estão ainda preenchidas como se uma
+alteração tivesse sido detectada, o que não é significativo quando o
+próprio país subjacente é desconhecido (um artefacto de comparação
+NaN do pandas, não uma alteração genuinamente detectada). Impacto
+prático negligível a esta escala, documentado aqui em vez de
+silenciosamente omitido.

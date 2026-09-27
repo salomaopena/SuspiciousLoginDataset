@@ -22,12 +22,13 @@ publicado — todas as características que a compunham já são colunas
 próprias, por isso quem quiser reproduzir essa comparação para um artigo
 pode recalculá-la directamente a partir delas.
 
-## A metodologia usada na versão actual (v1)
+## A metodologia usada na versão actual (v3)
 
-1. **Divisão temporal**, nunca aleatória: os primeiros 75% dos eventos por
-  `event_time` para ajuste, os últimos 25% (nunca vistos durante o ajuste)
-  para validação — consistente com a regra geral do projecto de nunca usar
-  divisões aleatórias como avaliação principal em dados sequenciais.
+1. **Divisão temporal**, nunca aleatória: os primeiros 70% dos eventos por
+  `event_time` para ajuste, os seguintes 15% para validação, os últimos
+  15% (nunca vistos durante o ajuste nem validação) para teste —
+  consistente com a regra geral do projecto de nunca usar divisões
+  aleatórias como avaliação principal em dados sequenciais.
 2. **Regressão logística** (`sklearn.linear_model.LogisticRegression`,
   `class_weight="balanced"`, dado o desequilíbrio de classes) sobre seis
   características: `new_ip`, `geo_jump`, `abnormal_login_hour`,
@@ -60,14 +61,17 @@ dados completo (duas instituições, 73.528 linhas). Ver o histórico de
 versões abaixo para o percurso completo (v1 → v2 → v3) e a justificação
 de cada mudança.
 
-## Como produzir uma nova versão (v2, v3, ...)
+## Como produzir uma nova versão (v4, v5, ...)
 
 Repetir exactamente o procedimento acima sobre o conjunto de dados
 actualizado:
 
 1. Carregar o `suspicious_logins_restricted_v1.csv` mais recente (precisa
   de `event_time`, só disponível no esquema restrito).
-2. Ordenar por `event_time`, cortar nos primeiros 75%/últimos 25%.
+2. Ordenar por `event_time`, cortar nos primeiros 70%/segundos 15%/últimos 15%
+   (excluindo qualquer período confirmado como não fiável, por instituição —
+   actualmente Julho-Agosto, ver `EVALUATION_CUTOFF_DATE` em
+   `benchmark_ml.py`).
 3. Construir `geo_jump` a partir de `country_changed`/`continent_changed`
   (já presente no esquema, não precisa de recalcular).
 4. Ajustar `LogisticRegression(class_weight="balanced", max_iter=1000,

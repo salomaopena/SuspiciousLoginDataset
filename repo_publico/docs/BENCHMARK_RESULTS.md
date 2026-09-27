@@ -26,23 +26,23 @@ ver `RISK_SCORE_METHODOLOGY.md` para a justificação completa.
 
 | Modelo | AUC-ROC | PR-AUC | Precisão | Recall | F1 | Falsos positivos / 1000 logins |
 |---|---|---|---|---|---|---|
-| Regressão Logística | 0,918 | 0,698 | 0,633 | 0,632 | 0,633 | 24,96 |
-| Árvore de Decisão | 0,946 | 0,767 | **0,950** | 0,624 | 0,753 | 2,23 |
-| **Random Forest** | **0,959** | **0,810** | 0,948 | 0,598 | 0,733 | 2,23 |
-| XGBoost | 0,940 | 0,783 | 0,845 | 0,651 | 0,735 | 8,13 |
+| Regressão Logística | 0,946 | 0,776 | 0,807 | 0,663 | 0,728 | 11,63 |
+| Árvore de Decisão | 0,953 | 0,774 | 0,912 | 0,618 | 0,737 | 4,36 |
+| **Random Forest** | **0,963** | **0,826** | 0,890 | 0,663 | 0,760 | 6,02 |
+| XGBoost | **0,963** | 0,783 | 0,845 | 0,651 | 0,735 | 8,13 |
 | LightGBM | 0,947 | 0,787 | 0,801 | **0,669** | 0,729 | 11,32 |
 | Isolation Forest (não supervisionado) | 0,766 | 0,175 | 0,256 | 0,517 | 0,342 | 102,54 |
 | `risk_score` (referência empírica) | 0,624 | 0,095 | 0,106 | 0,050 | 0,068 | 28,44 |
 
 ## Leitura dos resultados
 
-**O Random Forest tem o melhor equilíbrio geral** (`AUC-ROC=0,959`,
-`PR-AUC=0,810`), com precisão muito alta (0,948) — poucos falsos
+**O Random Forest tem o melhor equilíbrio geral** (`AUC-ROC=0,963`,
+`PR-AUC=0,826`), com precisão muito alta (0,890) — poucos falsos
 alarmes por cada alerta gerado. A Árvore de Decisão isolada chega a uma
-precisão ainda maior (0,950), à custa de recall ligeiramente menor.
+precisão ainda maior (0,912), à custa de recall ligeiramente menor.
 
 **Todos os modelos supervisionados superam claramente o `risk_score`**
-— a diferença de `AUC-ROC` (0,918-0,959 contra 0,624) confirma o valor
+— a diferença de `AUC-ROC` (0,946-0,963 contra 0,624) confirma o valor
 de usar aprendizagem automática completa em vez de uma pontuação
 simples baseada em poucas características, mesmo quando essa pontuação
 já foi validada empiricamente (não é a fórmula ingénua original, que

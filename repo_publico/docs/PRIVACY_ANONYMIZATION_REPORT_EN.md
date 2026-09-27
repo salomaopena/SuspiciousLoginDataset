@@ -135,3 +135,12 @@ benefits from being as reusable as possible, even in commercial
 contexts — but the data itself, since it contains real behavioral
 information about real people, keeps the non-commercial restriction as
 an additional safeguard beyond pseudonymization.
+
+**Additional confirmation (2026-08-12)**: the non-commercial restriction
+is not only our own choice — `ip-api.com`, used as the geolocation
+fallback during extraction, explicitly requires non-commercial use on
+its free tier ("*the use of the API is strictly limited for a
+non-commercial purpose*", `ip-api.com/docs/legal`). Since part of this
+dataset's geolocation comes from that service, the `CC BY-NC 4.0`
+license is not only appropriate — it is necessary to maintain
+compliance with that source.

@@ -139,13 +139,22 @@ logins).
 **LightGBM is the clear exception**: it improves on both AUC-ROC and
 PR-AUC with the extended feature set, and produces the best F1 score
 of all ten model/feature-set combinations (0.7567). A plausible
-explanation is LightGBM's leaf-wise (rather than level-wise) tree
+mechanism is LightGBM's leaf-wise (rather than level-wise) tree
 growth, which may exploit sparse, mostly-zero features like these more
-effectively than the other tree-based methods — this is a hypothesis
-worth stating explicitly in the article, not a proven mechanism.
-Feature importance analysis (not yet done) could help confirm whether
-`immediacy_ratio` specifically drives this improvement, matching the
-exploratory finding in section 5, or whether it's the raw counts.
+effectively than the other tree-based methods -- stated here as a
+hypothesis, not a proven mechanism. Feature importance analysis lends
+some support: `immediacy_ratio` ranks 22nd
+of 85 features by LightGBM's own importance score, and
+`gmail_events_5min`/`gmail_events_2h` rank 20th and 23rd -- none of the
+correlation features dominate the top of the ranking (still led by the
+established Article 3 behavioral features: `event_hour`,
+`days_since_first_login`, `logins_30d`), but several land in the top
+third, confirming they contribute real, moderate value rather than
+being ignored by the model. This directly supports the exploratory
+finding in section 5: timing-related correlation signal
+(`immediacy_ratio`, Gmail's short-window counts) is what LightGBM is
+picking up on, not the low-priority sources or the raw risky-action
+counts.
 
 **Headline conclusion for Article 4**: cross-source correlation, at
 least with these specific features and time windows, does not broadly
