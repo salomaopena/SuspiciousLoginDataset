@@ -26,14 +26,12 @@ load_dotenv(BASE_DIR / '.env')
 
 # Define the scopes and load environment variables
 SCOPES = ['https://www.googleapis.com/auth/admin.reports.audit.readonly']
-
-# SERVICE_ACCOUNT_FILE = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-SERVICE_ACCOUNT_FILE = BASE_DIR / "credentials.json" 
+SERVICE_ACCOUNT_FILE = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 DELEGATED_ADMIN = os.getenv('GOOGLE_WORKSPACE_ADMIN')
 START_TIME = os.getenv('START_TIME')
 END_TIME = os.getenv('END_TIME')
 MAX_RESULTS = int(os.getenv('MAX_RESULTS', 20))
-OUTPUT_FILE = BASE_DIR / os.getenv('OUTPUT_FILE', 'data/raw/suspicious_logins.csv')
+OUTPUT_FILE = BASE_DIR / os.getenv('OUTPUT_FILE', 'data/raw/suspicious_logins20.csv')
 
 
 # Ensure that the required environment variables are set
@@ -42,7 +40,7 @@ if not SERVICE_ACCOUNT_FILE or not DELEGATED_ADMIN:
 
 # Authenticate and build the service
 api_credentials = service_account.Credentials.from_service_account_file(
-    SERVICE_ACCOUNT_FILE, 
+    SERVICE_ACCOUNT_FILE,
     scopes=SCOPES
     ).with_subject(DELEGATED_ADMIN)
 
@@ -103,21 +101,21 @@ def safe_hash(value):
 
 
 def flatten (item, record_id):
-    
+
     id_obj = item.get("id", {})
     actor_obj = item.get("actor", {})
     geo_obj = item.get("geoLocation", {})
     events = item.get("events", [])
     raw_ip = item.get("ipAddress", "")
     geo_fallback = getGeoFromPI(raw_ip)
-    
+
     row = {
         "record_id": record_id,
         # id
         "event_time": id_obj.get("time"),
         # actor
         "actor_email_hash": safe_hash(actor_obj.get("email")),
-      
+
         # Network / geolocation
         "ip_hash": safe_hash(raw_ip),
         "ip_country": geo_obj.get("country") or geo_fallback["ip_country"],
@@ -130,7 +128,7 @@ def flatten (item, record_id):
 
         # events
         "event_name": None,
-        
+
         # login-specific fields
         "is_suspicious": None,
         "login_type": None,
@@ -139,10 +137,10 @@ def flatten (item, record_id):
         "login_status": None
     }
 
-   
+
 
     for ev in events:
-        
+
         if row["event_name"] is None:
             event_name = ev.get("name")
             row["event_name"] = event_name
@@ -157,12 +155,12 @@ def flatten (item, record_id):
                 row["login_status"] = "verification"
             else:
                 row["login_status"] = "other"
-         
-         
+
+
         for param in ev.get("parameters", []):
             name = param.get("name")
             value = get_param_value(param)
-            
+
             if name == "ip_address":
                 row["ip_hash"] = safe_hash(value)
 
@@ -178,8 +176,8 @@ def flatten (item, record_id):
                 else:
                     row["login_challenge_method"] = value
     return row
-  
-  
+
+
 rows = []
 page_token = None
 record_id = 1
@@ -204,7 +202,7 @@ while True:
     page_token = response.get('nextPageToken')
     if not page_token:
         break
-        
+
 # Save the results to a CSV file
 with open(OUTPUT_FILE, 'w', newline='', encoding='utf-8') as f:
     writer = csv.DictWriter(f, fieldnames=fields)

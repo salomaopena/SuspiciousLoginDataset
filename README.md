@@ -1,182 +1,529 @@
-# SuspiciousLogin Dataset and Suspicious Authentication Detection Benchmark in Google Workspace
+# SuspiciousLogin: Successful Cloud Identity Authentication Events for Behavioral and Security Analysis
 
-This artifact accompanies the article "Benchmarking Machine Learning Approaches for Suspicious Login Detection in Google Workspace," which compares seven detection strategies, six machine learning models and one reference risk score, over the *SuspiciousLogin Dataset*, a real collection of 73,528 successful authentication events in Google Workspace, gathered over eight months across two higher education institutions. The artifact includes the public dataset, the processing and training code, and the computational notebooks that reproduce the results reported in the article, including the model comparison, the feature-group ablation study, the user-history segmentation, and the hyperparameter tuning via Optuna.
+**SuspiciousLogin** is a pseudonymized dataset of successful authentications in cloud identity environments, built from real records from two higher education institutions.
 
-## README structure
+Release v2.0 contains **73,526 successful authentication events**, associated with **12,190 pseudonymized actors**, observed between **December 19, 2025, and August 12, 2026**. The dataset combines temporal, historical, network, geographic, and authentication attributes with the operational `provider_suspicious` signal provided by the identity provider.
 
-This document follows the structure required by the SBSEG 2026 Artifact Technical Committee: basic environment information, dependencies, security concerns, installation, a minimal test, and the experiments that reproduce the article's main claims, each in its own subsection.
+> **Important:** `provider_suspicious=1` only means that the event was flagged by the provider. The field does not constitute *ground truth* of an attack, compromise, or confirmed malicious activity.
+
+The release has two access levels:
+
+- **Public schema:** 42 attributes.
+- **Restricted schema:** 50 attributes, corresponding to the 42 public attributes plus 8 additional attributes with greater granularity.
+
+The public dataset was designed for open research, behavioral analysis, identity security studies, UEBA, risk-based authentication, and the development of independent anomaly detection methods.
+
+---
+
+## `README.md` Structure
+
+This document provides the information needed to understand, install, validate, and reuse the public release of SuspiciousLogin v2.0.
+
+The structure includes:
+
+1. basic environment information;
+2. dependencies;
+3. security and privacy concerns;
+4. repository organization;
+5. installation;
+6. minimum test;
+7. reproduction of the analyses from Article 1;
+8. supplementary documentation;
+9. citation and licensing.
+
+---
+
+## Related Documentation
+
+The documents below are part of the release specification and audit.
+
+| Document | Purpose | Link |
+
+|---|---|---|
+| **Data Dictionary** | Operational definition of the 42 public attributes and 8 additional restricted attributes | [Open Data Dictionary](docs/DATA_DICTIONARY.md) |
+| **Schema** | Formal structure of the public and restricted schemas | [Open Schema](docs/SCHEMA.md) |
+| **Data Audit Report** | Results of the integrity, consistency, and quality audit | [Open Audit Report](docs/DATA_AUDIT_REPORT.md) |
+| **Privacy and Pseudonymization Report** | Pseudonymization strategy, minimization, and privacy limitations | [Open Privacy Report](docs/PRIVACY_PSEUDONYMIZATION.md) |
+| **Installation and Replication Guide** | Detailed installation and methodological replication instructions | [Open guide](docs/INSTALLATION_AND_REPLICATION.md) |
+| **Dataset Manifest** | Machine-readable metadata, schema, hashes, and release information | [Open manifest](data/dataset_manifest_v2.json) |
+| **Public Results Notebook** | Reproduction of the descriptive analyses from Article 1 using only public data | [Open notebook](notebooks/article_one_results_analysis.ipynb) |
+
+---
 
 ## Badges Considered
 
-The badges considered are: **Available**, **Functional**, **Sustainable**, and **Reproducible Experiments**.
+When applicable to scientific artifact evaluation processes, this release was organized to support criteria for:
 
-## Basic information
+- **Availability:** accessible public data, documentation, and code;
+- **Functionality:** executable scripts and notebooks;
+- **Sustainability:** versioned structure, manifest, schema, and documentation;
+- **Reproducibility:** public analyses reproducible from the available dataset.
 
-The artifact consists of tabular data (`.csv` files) and Python code (scripts and Jupyter notebooks). No specialized hardware is required.
+*The formal awarding of any badge depends on the evaluation process of the corresponding conference or journal.*
 
-- **Operating system**: any system supporting Python 3.10 or later (tested on Linux; should work unchanged on macOS and Windows).
-- **Minimum hardware**: 2 GB of free RAM and 200 MB of disk space. No GPU is required.
-- **Estimated total time**: 10 to 15 minutes for the minimal test and the main claims; the full hyperparameter tuning run (optional, Claim #3) may take up to 10 additional minutes.
-- **Network access**: required only during installation, to download Python dependencies.
+---
+
+## Basic Information
+
+The public artifact consists primarily of tabular data in `.csv` format, Markdown documentation, Python scripts, and Jupyter notebooks.
+
+- **Operating system:** Linux, macOS, or Windows.
+- **Python:** 3.10 or higher.
+- **GPU:** not required for the descriptive analyses in Article 1.
+- **Recommended memory:** 2 GB of free RAM or more.
+- **Disk space:** at least 500 MB for the dataset, environment, and derived results.
+- **Network access:** required only to install dependencies and obtain repository files.
+
+---
 
 ## Dependencies
 
-| Dependency | Minimum version | Purpose |
-|---|---|---|
-| Python | 3.10 | Runtime language |
-| pandas | 2.0 | Tabular data manipulation |
-| numpy | 1.24 | Numerical operations |
-| scikit-learn | 1.3 | Logistic regression, decision tree, random forest, isolation forest |
-| xgboost | 2.0 | XGBoost model |
-| lightgbm | 4.0 | LightGBM model |
-| optuna | 4.0 | Hyperparameter tuning (Claim #3) |
-| jupyter / nbformat | latest | Notebook execution |
+The public analyses from Article 1 primarily use:
 
-All dependencies are public PyPI packages; no credentials or third-party service access are required. The `requirements.txt` file at the repository root pins the exact versions tested by the authors.
+| Dependency | Recommended version | Purpose |
 
-## Security concerns
+|---|---:|---|
+| Python | 3.10+ | Execution language |
+| pandas | 2.0+ | Tabular data manipulation |
+| numpy | 1.24+ | Numerical operations |
+| matplotlib | 3.7+ | Figures and visualizations |
+| jupyter | current version | Notebook execution |
+| python-dotenv | current version | Local pipeline configuration, when applicable |
 
-None. The artifact does not execute code with elevated privileges, does not access the network beyond installing public dependencies, and does not interact with any production system. The distributed data is already pseudonymized and generalized; no credential, API key, or Google Workspace access information is present in this public repository.
+The exact versions tested by the authors are recorded in:
 
-## Structure, in two repositories
+[**`requirements.txt`**](requirements.txt)
 
-Following the rule that raw/sensitive data and code/documentation live
-in separate repositories:
+---
+
+## Security and Privacy
+
+[**Privacy and Pseudonymization Report**](docs/PRIVACY_PSEUDONYMIZATION.md)
+
+---
+
+## Two-Repository Structure
+
+The recommended organization separates public material from internal and restricted artifacts.
 
 ```text
-suspiciouslogin-dataset/              (PUBLIC -- this repository)
+suspiciouslogin-public/                         (PUBLIC)
 ├── README.md
-├── LICENSE-DATASET.txt               (CC BY-NC 4.0, for the data)
-├── LICENSE-CODE.txt                  (MIT, for the code)
+├── LICENSE-DATASET.txt
+├── LICENSE-CODE.txt
 ├── CITATION.cff
 ├── codemeta.json
 ├── .zenodo.json
+├── requirements.txt
+│
 ├── data/
-│   ├── suspicious_logins_public_v1.csv
-│   ├── suspicious_logins_demo_sample.csv     (500-row sample)
-│   ├── benchmark_results.csv                 (Article 3)
-│   ├── article1_summary_statistics.csv
-│   └── article2_odds_ratios.csv
+│   ├── suspicious_logins_public_v2.csv
+│   └── dataset_manifest_v2.json
+│
 ├── notebooks/
-│   ├── benchmark_notebook.ipynb        (Article 3, Kaggle-ready, with plots)
-│   ├── article1_statistics.ipynb       (coverage, Gini, Lorenz curve, data quality)
-│   └── article2_empirical_patterns.ipynb (temporal/geographic patterns, statistical tests)
+│   └── article1_public_results_analysis.ipynb
+│
 ├── src/
-│   ├── processed.py                  (processing pipeline)
-│   └── benchmark_ml.py               (reference models)
-├── tests/
-│   └── test_processed.py             (23 automated tests)
+│   └── processed.py
+│
 └── docs/
-    ├── DATA_DICTIONARY_EN.md
-    ├── SCHEMA_EN.md
-    ├── RISK_SCORE_METHODOLOGY_EN.md
-    ├── PRIVACY_ANONYMIZATION_REPORT_EN.md
-    ├── DATA_AUDIT_REPORT_EN.md
-    ├── BENCHMARK_RESULTS_EN.md
-    └── figures/                       (PNGs referenced by the two statistics notebooks)
+    ├── DATA_DICTIONARY.md
+    ├── SCHEMA.md
+    ├── DATA_AUDIT_REPORT.md
+    ├── PRIVACY_PSEUDONYMIZATION_REPORT.md
+    ├── INSTALLATION_AND_REPLICATION.md
+    └── FINAL_RELEASE_VALIDATION.txt
+```
 
-suspiciouslogin-dataset-private/       (PRIVATE -- never published)
-├── .env                               (HMAC_SECRET_KEY_* keys, never committed)
+```text
+suspiciouslogin-restricted/                 (RESTRICTED / INTERNAL)
+├── .env
 ├── .gitignore
-├── credentials.json                   (Google API credentials, never committed)
+├── credentials.json
+│
 ├── data/
 │   ├── raw/
-│   │   ├── <institution_a>/           (that institution's extraction CSVs)
-│   │   └── <institution_b>/
+│   │   ├── institution_a/
+│   │   └── institution_b/
 │   └── processed/
-│       └── suspicious_logins_restricted_v1.csv
+│       └── suspicious_logins_restricted_v2.csv
+│
+├── notebooks/
+│   └── article1_statistics_release_gate.ipynb
+│
 ├── src/
 │   ├── processed.py
-│   ├── benchmark_ml.py
 │   ├── extract_suspicious_logins.py
 │   └── functions.py
-└── tests/
-    └── test_processed.py
+│
+└── internal/
+    └── audit_and_provenance_artifacts/
 ```
+
+---
+
+## Release Schema
+
+### Public Schema
+
+The file:
+
+```text
+data/suspicious_logins_public_v2.csv
+```
+
+contains:
+
+- **73,526 events**;
+- **42 attributes**;
+- **12,190 pseudonymized actors**.
+
+The public attributes are organized into six blocks:
+
+1. identification and temporal;
+2. activity and history;
+3. network/IP;
+4. geography;
+5. authentication;
+6. provider signal.
+
+The complete specification is available in:
+
+[**Data Dictionary**](docs/DATA_DICTIONARY.md)
+
+and:
+
+[**Schema**](docs/SCHEMA.md)
+
+### Restricted Schema
+
+The restricted schema contains the same 42 public attributes and adds:
+
+```text
+event_time
+institution_pseudo_id
+network_pseudo_id
+ip_city
+latitude
+longitude
+travel_distance_km
+travel_speed_kmh
+```
+
+for a total of **50 attributes**.
+
+The restricted file is not included in the public distribution.
+
+---
 
 ## Installation
 
 ```bash
-# 1. Clone the public repository
+# 1. Clone the repository
 git clone https://github.com/salomaopena/SuspiciousLoginDataset.git
-cd SuspiciousLoginDataset
 
-# 2. Create a virtual environment (recommended)
+cd suspiciouslogin-dataset
+
+# 2. Create a virtual environment
 python3 -m venv venv
-source venv/bin/activate      # on Windows: venv\Scripts\activate
+
+# Linux/macOS
+source venv/bin/activate
+
+# Windows
+# venv\Scripts\activate
 
 # 3. Install dependencies
 pip install -r requirements.txt
 ```
 
-After this process, the scripts under `src/` and the notebook at `notebooks/benchmark_notebook.ipynb` are ready to run.
+After installation, the public dataset and the Article 1 notebook can be used without access to the restricted dataset.
 
-## Minimal test
+---
 
-Confirms that the public dataset loads correctly and that the environment is ready for the experiments.
+## Minimum Test
+
+The test below checks whether the public dataset has the expected size and schema.
 
 ```bash
 python3 -c "
 import pandas as pd
-df = pd.read_csv('data/suspicious_logins_public_v1.csv')
-assert len(df) == 73528, 'unexpected row count'
-assert abs(df[\"label\"].mean() - 0.0759) < 0.001, 'unexpected suspicion rate'
-print('Minimal test passed:', len(df), 'rows,', round(df[\"label\"].mean()*100, 2), '% suspicious')
+
+df = pd.read_csv('data/suspicious_logins_public_v2.csv')
+
+assert len(df) == 73526, f'Unexpected number of events: {len(df)}'
+assert len(df.columns) == 42, f'Unexpected number of attributes: {len(df.columns)}'
+assert df['event_id'].is_unique, 'event_id must be unique'
+assert set(df['provider_suspicious'].dropna().astype(int).unique()) == {0, 1}
+assert 'history_available' not in df.columns
+
+print(
+    'Minimum test passed:',
+    len(df),
+    'events,',
+    len(df.columns),
+    'public attributes'
+)
 "
 ```
 
-**Expected result**: `Minimal test passed: 73528 rows, 7.59 % suspicious`. Expected time: under 5 seconds.
+**Expected result:**...
 
-## Experiments
-
-The three claims below cover the article's central results. Each can be reproduced independently, without depending on the others.
-
-## Claim #1 — Random Forest and XGBoost tie for best performance (AUC-ROC 0.963)
-
-**What it reproduces**: Table 1 of the article, with the comparative performance of the seven models on the test set.
-
-**Command**:
-
-```bash
-python3 src/benchmark_ml.py
+```text
+Minimum test passed: 73526 events, 42 public attributes
 ```
 
-**Configuration file**: none to change; default hyperparameters are already fixed in the script itself.
+---
 
-**Expected time**: approximately 2 minutes.
+## Reproducing the Analyses from Article 1
 
-**Expected resources**: under 1 GB of RAM.
+The public notebook:
 
-**Expected result**: a table printed to the terminal with seven rows (Logistic Regression, Decision Tree, Random Forest, XGBoost, LightGBM, Isolation Forest, Risk Score) and six metric columns. Random Forest and XGBoost should show AUC-ROC of 0.963, outperforming the rest.
+[**`article_one_results_analysis.ipynb`**](notebooks/article_one_results_analysis.ipynb)
 
-## Claim #2 — Temporal and authentication attributes carry most of the discriminative signal (ablation study)
+uses only:
 
-**What it reproduces**: Figure 2 of the article (ablation study) and the claim that the baseline attribute subset reaches AUC-ROC close to 0.94, against 0.96 for the complete set.
+```text
+data/suspicious_logins_public_v2.csv
+```
 
-**Command**: open and run the cells in the "Estudo de ablação" section of `notebooks/benchmark_notebook.ipynb`.
+and reproduces the descriptive analyses compatible with the public release.
 
-**Expected time**: approximately 3 minutes.
+### Analysis #1 — Dataset Overview
 
-**Expected result**: four increasing AUC-ROC values (approximately 0.940, 0.947, 0.9495, and 0.9592), confirming that each additional attribute group's marginal gain is small compared to the performance already achieved by temporal and authentication attributes alone.
+Reproduces:
 
-## Claim #3 — Hyperparameter tuning yields modest, legitimate gains, not close to 100%
+- number of events;
+- number of actors;
+- public temporal coverage;
+- number and proportion of events flagged by the provider.
 
-**What it reproduces**: the appendix table comparing original and tuned performance, and the article's argument that a security dataset should not show near-perfect performance.
+Reference values:
 
-**Command**: run the cells in Section 15 ("Hyperparameter tuning via Optuna") of `notebooks/benchmark_notebook.ipynb`.
+```text
+Events:                 73,526
+Pseudonymized actors:   12,190
+provider_suspicious = 1: 7,196
+provider_suspicious = 0: 66,330
+```
 
-**Expected time**: up to 10 minutes, given the number of optimization trials (40 for Random Forest, 30 for XGBoost and LightGBM, 25 for Logistic Regression and Decision Tree).
+### Analysis #2 — Activity and Observed History
 
-**Expected resources**: under 1 GB of RAM; no GPU.
+Reproduces:
 
-**Expected result**: AUC-ROC gains between 0.004 and 0.028 depending on the model, never exceeding 0.963. A result close to 1.0 would indicate data leakage between training and test, not method success.
+- events per actor;
+- actors with a single event;
+- actors with recurring events;
+- events with prior history;
+- Gini coefficient;
+- share of the most active 1% and 10%.
+
+History availability is derived using:
+
+```python
+prior_event_count > 0
+```
+
+### Analysis #3 — Authentication Characteristics
+
+Reproduces distributions of:
+
+```text
+login_type
+login_challenge_method
+provider_suspicious
+```
+
+and enables the analysis of derived attributes such as novelty, change, and recent diversity of authentication methods.
+
+### Analysis #4 — Geographic Characteristics
+
+Reproduces:
+
+- distribution by country;
+- distribution by continent;
+- recent country diversity;
+- geographic changes and novelty.
+
+The public release preserves normalized country values. Rare categories are not replaced with `Other` in the CSV.
+
+### Analysis #5 — Network Characteristics
+
+The identifier:
+
+```text
+actor_network_id
+```
+
+enables analysis, within the same actor, of:
+
+- first network occurrence;
+- network change;
+- number of distinct networks within 24 hours, 7 days, and 30 days;
+- cumulative number of observed networks.
+
+This identifier is not comparable across actors.
+
+### Analysis #6 — Missingness
+
+The notebook generates a missing-value report for the 42 public attributes.
+
+Some missing values are structural. For example:
+
+```text
+hours_since_last_login = NA
+```
+
+for each actor's first observed event.
+
+The specific rules for each attribute are provided in the:
+
+[**Data Dictionary**](docs/DATA_DICTIONARY.md)
+
+---
+
+## Internal Release Validation
+
+Full validation uses the restricted notebook:
+
+```text
+article1_statistics_release_gate.ipynb
+```
+
+This notebook **is not included in the public repository** because it depends on the restricted dataset.
+
+The release gate checks, among other aspects:
+
+- exact 42/50 schema;
+- SHA-256 hashes;
+- public/restricted alignment by `event_id`;
+- uniqueness;
+- domains;
+- absence of prohibited attributes;
+- independent reconstruction of temporal features;
+- network features;
+- geographic features;
+- authentication features;
+- mobility;
+- missingness;
+- temporal invariants;
+- institutional statistics.
+
+The release should only be considered validated when the notebook finishes with:
+
+```text
+RELEASE VALIDATION: PASS
+```
+
+The exported validation report can be consulted at:
+
+[**Final Release Validation Report**](docs/FINAL_RELEASE_VALIDATION.txt)
+
+---
+
+## Reproducibility
+
+The documentation distinguishes four levels of reproducibility:
+
+### Public Analytical Reproducibility
+
+Execution of the analyses directly on the 42 available attributes.
+
+### Reconstruction of Public Attributes
+
+Some derived attributes can be reconstructed from the public columns themselves, including various temporal, network, geographic, and authentication indicators.
+
+### Methodological Replication
+
+Another institution with legitimate access to its own records can reuse the extraction and processing code to produce a structurally comparable resource.
+
+### Full Reconstruction
+
+The exact reconstruction of the 73,526 original events is not public because it depends on the original institutional logs and private pseudonymization keys.
+
+More details:
+
+[**Installation and Replication Guide**](docs/INSTALLATION_AND_REPLICATION.md)
+
+---
+
+## Integrity and Audit
+
+The release is accompanied by a machine-readable manifest containing information such as:
+
+- dataset version;
+- schema version;
+- number of events;
+- number of actors;
+- coverage period;
+- column names and order;
+- SHA-256 hashes;
+- pseudonymization rules;
+- validation information.
+
+See:
+
+[**Dataset Manifest**](data/dataset_manifest_v2.json)
+
+and:
+
+[**Data Audit Report**](docs/DATA_AUDIT_REPORT.md)
+
+---
+
+## Data Availability
+
+### Public Release
+
+**Repository:**
+
+[*https://github.com/salomaopena/SuspiciousLoginDataset*](https://github.com/salomaopena/SuspiciousLoginDataset)
+
+**DOI / Zenodo:**
+
+[<INSERT_DOI_OR_ZENODO_URL>](https://...)
+
+### Restricted Data
+
+The restricted schema is not made available as an open file.
+
+Justified requests may be considered following an assessment of the scientific purpose, privacy risks, and applicable institutional requirements. Where appropriate, access may be limited to the minimum subset of attributes necessary for the proposed research.
+
+---
 
 ## Citation
 
-See `CITATION.cff` and `.zenodo.json`. The DOI will be added to both
-once the Zenodo record is published.
+See:
 
-## LICENSE
+[**`CITATION.cff`**](CITATION.cff)
 
-- **Dataset** (`data/suspicious_logins_public_v1.csv` and documentation): Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) — see `LICENSE-DATASET.txt`.
-- **Code** (`src/processed.py`, `src/benchmark_ml.py`, `notebooks/benchmark_notebook.ipynb`, tests): MIT License — see `LICENSE-CODE.txt`.
+```text
+Pena, S. B. N.; Quincozes, S. E.; Miani, R. S.
+SuspiciousLogin: A Dataset of Successful Cloud Identity Authentication Events
+for Behavioral and Security Analysis.
+Dataset version 2.0.
+2026. <DOI/URL>.
+```
+
+---
+
+## License
+
+- **Dataset:** [LICENSE-DATASET.txt](LICENSE-DATASET.txt)
+- **Code:** [LICENSE-CODE.txt](LICENSE.txt)
+
+---
+
+## Contact
+
+**Corresponding author:**  
+Salomão Bento Nilo Pena
+
+**Institution / group:**  
+<INSERT_AFFILIATION>
+
+**Institutional email:**  
+<INSERT_EMAIL>
+
+**Project page:**  
+<INSERT_PROJECT_URL>

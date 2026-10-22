@@ -1,7 +1,7 @@
 {
-  "title": "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Login Events from Google Workspace",
-  "description": "An anonymized benchmark of successful Google Workspace login events, labeled as suspicious or not by Google's own operational signal (is_suspicious), combining data from two higher-education institutions. 73,528 events, 36,691 pseudonymized users, spanning December 2025 to August 2026. Includes 38 engineered behavioral, temporal, and geographic features, an empirically-validated risk score (logistic-regression-derived, chronologically validated), and reference machine-learning benchmark results (Logistic Regression, Decision Tree, Random Forest, XGBoost, LightGBM, Isolation Forest). The is_suspicious label is an operational signal supplied by Google Workspace, not a forensic confirmation of phishing, credential stuffing, brute force, or actual account compromise. Full methodology, data dictionary, schema, and privacy/anonymization report included, in Portuguese and English.",
-  "version": "1.0.0",
+  "title": "SuspiciousLogin: A Dataset of Successful Cloud Identity Authentication Events for Behavioral and Security Analysis",
+  "description": "SuspiciousLogin v2 is a pseudonymized dataset of 73,526 successful Google Workspace authentication events associated with 12,190 actor pseudonyms from two higher-education institutions. The public schema contains 23 attributes covering authentication context, observed history, recent login frequency, network and geographic novelty, and the provider-generated provider_suspicious operational signal. The signal is not forensic ground truth of account compromise. The public artifact includes the v2 dataset, manifest, validation code, data dictionary, privacy/provenance documentation, and the Article 1 characterization notebook.",
+  "version": "2.0.0",
   "upload_type": "dataset",
   "access_right": "open",
   "license": "CC-BY-NC-4.0",
@@ -9,12 +9,10 @@
   "keywords": [
     "cloud security",
     "identity security",
-    "anomaly detection",
-    "Google Workspace",
+    "authentication",
+    "behavioral analysis",
     "suspicious login",
-    "cybersecurity dataset",
-    "higher education",
-    "machine learning benchmark"
+    "cybersecurity dataset"
   ],
   "creators": [
     {
@@ -22,15 +20,14 @@
       "affiliation": "Instituto Superior de Ciências da Educação da Huíla | Universidade Federal de Uberlândia (UFU)"
     },
     {
-      "name": "Miani, Rodrigo Sanches",
+      "name": "Quincozes, Silvio Ereno",
       "affiliation": "Universidade Federal de Uberlândia (UFU)"
     },
     {
-      "name": "Quincozes, Silvio Erenos",
+      "name": "Miani, Rodrigo Sanches",
       "affiliation": "Universidade Federal de Uberlândia (UFU)"
     }
   ],
-  "contributors": [],
   "related_identifiers": [
     {
       "identifier": "https://github.com/salomaopena/SuspiciousLoginDataset/",
@@ -38,6 +35,5 @@
       "resource_type": "software"
     }
   ],
-  "communities": [],
-  "notes": "The restricted schema (with precise timestamps, city, coordinates, and network identifiers) is never published and is not part of this record -- only the public schema, safe demo sample, code, and documentation are included. See PRIVACY_ANONYMIZATION_REPORT.md for the full data governance methodology."
+  "notes": "Only the public v2 dataset is included. The restricted tier, raw institutional logs, credentials, and HMAC keys are not part of this public record. provider_suspicious is an operational provider signal, not forensic ground truth."
 }

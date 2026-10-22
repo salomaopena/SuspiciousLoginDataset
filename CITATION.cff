@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this dataset, please cite it as below."
 type: dataset
-title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Login Events from Google Workspace"
+title: "SuspiciousLogin: A Dataset of Successful Cloud Identity Authentication Events for Behavioral and Risk Analysis"
 authors:
   - family-names: "Pena"
     given-names: "Salomão Bento Nilo"
@@ -16,42 +16,32 @@ authors:
     affiliation: "Universidade Federal de Uberlândia (UFU)"
     orcid: "https://orcid.org/0000-0002-8176-8040"
 repository-code: "https://github.com/salomaopena/SuspiciousLoginDataset"
-url: "[DATASET REPOSITORY URL TO FILL IN]"
+url: "https://github.com/salomaopena/SuspiciousLoginDataset"
 abstract: >-
-  An anonymized benchmark of successful Google Workspace login events,
-  labeled as suspicious or not by Google's own operational signal
-  (is_suspicious), combining data from two higher-education institutions.
-  73,528 events, 36,691 pseudonymized users, spanning December 2025 to
-  August 2026. Includes 38 engineered behavioral, temporal, and
-  geographic features plus an empirically-validated risk score. The
-  is_suspicious label is an operational signal, not a forensic
-  confirmation of phishing, credential stuffing, brute force, or actual
-  account compromise.
+  SuspiciousLogin is a pseudonymized dataset of 73,526 successful Google Workspace
+  authentication events associated with 12,190 actor pseudonyms from two higher-education
+  institutions. The public v2 schema contains 23 attributes covering authentication context,
+  observed history, recent login frequency, network and geographic novelty, and the
+  provider-generated provider_suspicious operational signal. The signal is not forensic
+  ground truth of account compromise.
 keywords:
   - cloud security
   - identity security
-  - anomaly detection
+  - authentication
+  - behavioral analysis
   - Google Workspace
   - suspicious login
   - cybersecurity dataset
-  - higher education
 license: CC-BY-NC-4.0
-version: "1.0.0"
-date-released: "2026-08-18"
-# doi: "[DOI TO FILL IN after Zenodo registration]"
-
+version: "2.0.0"
 preferred-citation:
   type: dataset
-  title: "SuspiciousLogin Dataset: An Anonymized Benchmark of Suspicious Successful Login Events from Google Workspace"
+  title: "SuspiciousLogin: A Dataset of Successful Cloud Identity Authentication Events for Behavioral and security Analysis"
   authors:
     - family-names: "Pena"
       given-names: "Salomão Bento Nilo"
-      affiliation: "Universidade Federal de Uberlândia (UFU)"
     - family-names: "Quincozes"
       given-names: "Silvio Ereno"
-      affiliation: "Universidade Federal de Uberlândia (UFU)"
     - family-names: "Miani"
       given-names: "Rodrigo Sanches"
-      affiliation: "Universidade Federal de Uberlândia (UFU)"
   year: 2026
-  # doi: "[DOI TO FILL IN after Zenodo registration]"
