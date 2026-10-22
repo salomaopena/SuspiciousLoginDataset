@@ -39,13 +39,13 @@ The documents below are part of the release specification and audit.
 
 | Document | Purpose | Link |
 |---|---|---|
-| **Data Dictionary** | Operational definition of the 42 public attributes and 8 additional restricted attributes | [Open Data Dictionary](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/DATA_DICTIONARY.md) |
-| **Schema** | Formal structure of the public and restricted schemas | [Open Schema](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/SCHEMA.md) |
-| **Data Audit Report** | Results of the integrity, consistency, and quality audit | [Open Audit Report](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/DATA_AUDIT_REPORT.md) |
-| **Privacy and Pseudonymization Report** | Pseudonymization strategy, minimization, and privacy limitations | [Open Privacy Report](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/PRIVACY_PSEUDONYMIZATION.md) |
-| **Installation and Replication Guide** | Detailed installation and methodological replication instructions | [Open guide](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/INSTALLATION_AND_REPLICATION.md) |
-| **Dataset Manifest** | Machine-readable metadata, schema, hashes, and release information | [Open manifest](data/dataset_manifest_v2.json) |
-| **Public Results Notebook** | Reproduction of the descriptive analyses from Article 1 using only public data | [Open notebook](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/notebooks/article_one_results_analysis.ipynb) |
+| **Data Dictionary** | Operational definition of the 42 public attributes and 8 additional restricted attributes | [Open Data Dictionary](public/docs/DATA_DICTIONARY.md) |
+| **Schema** | Formal structure of the public and restricted schemas | [Open Schema](public/docs/SCHEMA.md) |
+| **Data Audit Report** | Results of the integrity, consistency, and quality audit | [Open Audit Report](public/docs/DATA_AUDIT_REPORT.md) |
+| **Privacy and Pseudonymization Report** | Pseudonymization strategy, minimization, and privacy limitations | [Open Privacy Report](public/docs/PRIVACY_PSEUDONYMIZATION.md) |
+| **Installation and Replication Guide** | Detailed installation and methodological replication instructions | [Open guide](public/docs/INSTALLATION_AND_REPLICATION.md) |
+| **Dataset Manifest** | Machine-readable metadata, schema, hashes, and release information | [Open manifest](public/data/dataset_manifest_v2.json) |
+| **Public Results Notebook** | Reproduction of the descriptive analyses from Article 1 using only public data | [Open notebook](public/notebooks/article_one_results_analysis.ipynb) |
 
 ---
 
@@ -96,7 +96,7 @@ The exact versions tested by the authors are recorded in:
 
 ## Security and Privacy
 
-[**Privacy and Pseudonymization Report**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/PRIVACY_PSEUDONYMIZATION.md)
+[**Privacy and Pseudonymization Report**](public/docs/PRIVACY_PSEUDONYMIZATION.md)
 
 ---
 
@@ -191,11 +191,11 @@ The public attributes are organized into six blocks:
 
 The complete specification is available in:
 
-[**Data Dictionary**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/docs/DATA_DICTIONARY.md)
+[**Data Dictionary**](public/docs/DATA_DICTIONARY.md)
 
 and:
 
-[**Schema**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/docs/SCHEMA.md)
+[**Schema**](public/docs/SCHEMA.md)
 
 ### Restricted Schema
 
@@ -287,7 +287,7 @@ Minimum test passed: 73526 events, 42 public attributes
 
 The public notebook:
 
-[**`article_one_results_analysis.ipynb`**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/notebooks/article_one_results_analysis.ipynb)
+[**`article_one_results_analysis.ipynb`**](public/notebooks/article_one_results_analysis.ipynb)
 
 uses only:
 
@@ -386,7 +386,7 @@ for each actor's first observed event.
 
 The specific rules for each attribute are provided in the:
 
-[**Data Dictionary**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/docs/DATA_DICTIONARY.md)
+[**Data Dictionary**](public/docs/DATA_DICTIONARY.md)
 
 ---
 
@@ -425,7 +425,7 @@ RELEASE VALIDATION: PASS
 
 The exported validation report can be consulted at:
 
-[**Final Release Validation Report**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/data/dataset_manifest_v2.json)
+[**Final Release Validation Report**](public/data/dataset_manifest_v2.json)
 
 ---
 
@@ -451,7 +451,7 @@ The exact reconstruction of the 73,526 original events is not public because it 
 
 More details:
 
-[**Installation and Replication Guide**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/INSTALLATION_AND_REPLICATION.md)
+[**Installation and Replication Guide**](public/docs/INSTALLATION_AND_REPLICATION.md)
 
 ---
 
