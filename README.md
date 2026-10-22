@@ -218,6 +218,12 @@ The restricted file is not included in the public distribution.
 
 ---
 
+## Sample
+
+suspicious_logins_demo_sample.csv is a small subset intended for inspection, tutorials, and quick software tests. Actors are sampled rather than individual rows so that the observed event sequence of each selected actor is preserved. The sample must not be treated as representative of the full dataset and should not be used to reproduce the descriptive statistics reported in the article.
+
+---
+
 ## Installation
 
 ```bash

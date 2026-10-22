@@ -1,0 +1,12 @@
+metric,value,percent
+Actors with one event,347.0,2.8465955701394585
+Actors with recurrent events,11843.0,97.15340442986054
+Events with prior observed history,61336.0,83.42083072654572
+Events without prior observed history,12190.0,16.57916927345429
+Actor events Q1,3.0,
+Actor events median,3.0,
+Actor events Q3,4.0,
+Actor events maximum,1847.0,
+Activity Gini coefficient,0.5375532190239156,
+Event share of top 1% actors,22007.0,29.930908794168047
+Event share of top 10% actors,38961.0,52.9894187090281
