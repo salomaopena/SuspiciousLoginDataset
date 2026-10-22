@@ -5,7 +5,6 @@ Scientific file format: UTF-8 CSV, `,` separator, header on the first line.
 ## Public schema — 42 columns
 
 | # | Column | Expected type | Nullable? |
-
 |---:|---|---|---|
 | 1 | `event_id` | string | no |
 | 2 | `actor_pseudo_id` | string | no |
@@ -55,7 +54,6 @@ Scientific file format: UTF-8 CSV, `,` separator, header on the first line.
 The restricted schema contains the 42 public columns and adds:
 
 | # | Column | Expected type | Nullable? |
-
 |---:|---|---|---|
 | 43 | `event_time` | exact UTC datetime | no |
 | 44 | `institution_pseudo_id` | string | no |

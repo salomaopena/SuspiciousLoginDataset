@@ -25,7 +25,6 @@
 All temporal attributes are referenced exclusively in **UTC**.
 
 | # | Attribute | Type | Source / Dependency | Operational Definition | *Missing* Rule |
-
 |---:|---|---|---|---|---|
 | 1 | `event_id` | Text | Derived | Deterministic and unique event identifier (HMAC). Used for uniqueness and ordering tie-breaking. | Not allowed |
 | 2 | `actor_pseudo_id` | Text | Pseudonymization | Stable actor pseudonym within the institutional scope. | Not allowed |
@@ -42,7 +41,6 @@ All temporal attributes are referenced exclusively in **UTC**.
 Calculated strictly in the actor's temporal order.
 
 | # | Attribute | Type | Temporal Basis | Operational Definition | Actor's 1st Event |
-
 |---:|---|---|---|---|---|
 | 8 | `prior_event_count` | Integer ≥ 0 | Cumulative history | Number of previous events observed for the same actor. | `0` |
 | 9 | `hours_since_last_login` | Decimal ≥ 0 | Exact timestamp | Interval in hours since the immediately preceding login: `(t_i - t_{i-1}) / 3600`. | `NA` |
@@ -66,7 +64,6 @@ Calculated strictly in the actor's temporal order.
 ### 1.3 Block C — Network / IP (8 Attributes)
 
 | # | Attribute | Type | Temporal Basis | Operational Definition | *Missing* / 1st Event |
-
 |---:|---|---|---|---|---|
 | 16 | `actor_network_id` | Text | Current event | **Actor-scoped** pseudonymized network/IP identifier. Not comparable across actors. | `NA` if IP is missing |
 | 17 | `ip_version` | Integer `{4,6}` | Current event | Observed IP protocol version (4 or 6). | `NA` if unavailable |
@@ -89,7 +86,6 @@ Calculated strictly in the actor's temporal order.
 ### 1.4 Block D — Geography (10 Attributes)
 
 | # | Attribute | Type | Temporal Basis | Operational Definition | *Missing* / 1st Event |
-
 |---:|---|---|---|---|---|
 | 24 | `ip_country` | Text | Current event | Normalized code/name of the country associated with the source IP. | `NA` if unavailable |
 | 25 | `continent` | Text | Current event | Continent deterministically mapped from `ip_country`. | `NA` if country is missing |
@@ -113,7 +109,6 @@ Calculated strictly in the actor's temporal order.
 ### 1.5 Block E — Authentication (8 Attributes)
 
 | # | Attribute | Type | Temporal Basis | Operational Definition | *Missing* / 1st Event |
-
 |---:|---|---|---|---|---|
 | 34 | `login_type` | Categorical | Current event | Login type reported by the provider (e.g., `google_password`, `reauth`). | `NA` if unavailable |
 | 35 | `login_challenge_method` | Text | Current event | Authentication challenge method(s) or category/categories recorded by the provider, normalized and separated by `\|` (e.g., `password\|security_key`). | `none` is a valid category; `NA` if missing |
@@ -129,7 +124,6 @@ Calculated strictly in the actor's temporal order.
 ### 1.6 Block F — Provider Signal (1 Attribute)
 
 | # | Attribute | Type | Source | Operational Definition | *Missing* Rule |
-
 |---:|---|---|---|---|---|
 | 42 | `provider_suspicious` | Binary `0/1` | Identity Provider | `1` = successful authentication event flagged as suspicious by the provider; `0` = not flagged. `1` does not represent a confirmed attack/compromise, and `0` does not represent confirmed legitimacy. | **Not allowed**. Halts pipeline execution if null. |
 
@@ -147,7 +141,6 @@ Calculated strictly in the actor's temporal order.
 The Restricted Schema contains the **42 public attributes** and adds exactly these **8 controlled-access fields**:
 
 | # | Attribute | Type | Source | Scientific and Operational Purpose | *Missing* Rule |
-
 |---:|---|---|---|---|---|
 | 43 | `event_time` | Exact UTC Datetime | Normalized source | Original temporal precision, canonical ordering, and auditing. | Required |
 | 44 | `institution_pseudo_id` | Text | Pseudonymization | Source institution identifier (controlled inter-institutional comparison). | Required |

@@ -38,15 +38,14 @@ The structure includes:
 The documents below are part of the release specification and audit.
 
 | Document | Purpose | Link |
-
 |---|---|---|
-| **Data Dictionary** | Operational definition of the 42 public attributes and 8 additional restricted attributes | [Open Data Dictionary](docs/DATA_DICTIONARY.md) |
-| **Schema** | Formal structure of the public and restricted schemas | [Open Schema](docs/SCHEMA.md) |
-| **Data Audit Report** | Results of the integrity, consistency, and quality audit | [Open Audit Report](docs/DATA_AUDIT_REPORT.md) |
-| **Privacy and Pseudonymization Report** | Pseudonymization strategy, minimization, and privacy limitations | [Open Privacy Report](docs/PRIVACY_PSEUDONYMIZATION.md) |
-| **Installation and Replication Guide** | Detailed installation and methodological replication instructions | [Open guide](docs/INSTALLATION_AND_REPLICATION.md) |
+| **Data Dictionary** | Operational definition of the 42 public attributes and 8 additional restricted attributes | [Open Data Dictionary](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/DATA_DICTIONARY.md) |
+| **Schema** | Formal structure of the public and restricted schemas | [Open Schema](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/SCHEMA.md) |
+| **Data Audit Report** | Results of the integrity, consistency, and quality audit | [Open Audit Report](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/DATA_AUDIT_REPORT.md) |
+| **Privacy and Pseudonymization Report** | Pseudonymization strategy, minimization, and privacy limitations | [Open Privacy Report](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/PRIVACY_PSEUDONYMIZATION.md) |
+| **Installation and Replication Guide** | Detailed installation and methodological replication instructions | [Open guide](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/INSTALLATION_AND_REPLICATION.md) |
 | **Dataset Manifest** | Machine-readable metadata, schema, hashes, and release information | [Open manifest](data/dataset_manifest_v2.json) |
-| **Public Results Notebook** | Reproduction of the descriptive analyses from Article 1 using only public data | [Open notebook](notebooks/article_one_results_analysis.ipynb) |
+| **Public Results Notebook** | Reproduction of the descriptive analyses from Article 1 using only public data | [Open notebook](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/notebooks/article_one_results_analysis.ipynb) |
 
 ---
 
@@ -81,7 +80,6 @@ The public artifact consists primarily of tabular data in `.csv` format, Markdow
 The public analyses from Article 1 primarily use:
 
 | Dependency | Recommended version | Purpose |
-
 |---|---:|---|
 | Python | 3.10+ | Execution language |
 | pandas | 2.0+ | Tabular data manipulation |
@@ -92,13 +90,13 @@ The public analyses from Article 1 primarily use:
 
 The exact versions tested by the authors are recorded in:
 
-[**`requirements.txt`**](requirements.txt)
+[**`requirements.txt`**](https://github.com/salomaopena/SuspiciousLoginDataset/public/requirements.txt)
 
 ---
 
 ## Security and Privacy
 
-[**Privacy and Pseudonymization Report**](docs/PRIVACY_PSEUDONYMIZATION.md)
+[**Privacy and Pseudonymization Report**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/PRIVACY_PSEUDONYMIZATION.md)
 
 ---
 
@@ -121,18 +119,22 @@ suspiciouslogin-public/                         (PUBLIC)
 │   └── dataset_manifest_v2.json
 │
 ├── notebooks/
-│   └── article1_public_results_analysis.ipynb
+│   └── article_one_results_analysis.ipynb
 │
 ├── src/
 │   └── processed.py
+│   └── extract_suspicious_logins.py
+│   └── validate_release.py
+│   └── validate_security_dataset.py
+│   └── functions.py
+│   └── benchmark_ml.py
 │
 └── docs/
     ├── DATA_DICTIONARY.md
     ├── SCHEMA.md
     ├── DATA_AUDIT_REPORT.md
-    ├── PRIVACY_PSEUDONYMIZATION_REPORT.md
-    ├── INSTALLATION_AND_REPLICATION.md
-    └── FINAL_RELEASE_VALIDATION.txt
+    ├── PRIVACY_PSEUDONYMIZATION.md
+    └── INSTALLATION_AND_REPLICATION.md
 ```
 
 ```text
@@ -149,7 +151,7 @@ suspiciouslogin-restricted/                 (RESTRICTED / INTERNAL)
 │       └── suspicious_logins_restricted_v2.csv
 │
 ├── notebooks/
-│   └── article1_statistics_release_gate.ipynb
+│   └── article_one_statistics_release_gate.ipynb
 │
 ├── src/
 │   ├── processed.py
@@ -189,7 +191,7 @@ The public attributes are organized into six blocks:
 
 The complete specification is available in:
 
-[**Data Dictionary**](docs/DATA_DICTIONARY.md)
+[**Data Dictionary**](https://github.com/salomaopena/SuspiciousLoginDataset/public/docs/DATA_DICTIONARY.md)
 
 and:
 
