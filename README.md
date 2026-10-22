@@ -90,7 +90,7 @@ The public analyses from Article 1 primarily use:
 
 The exact versions tested by the authors are recorded in:
 
-[**`requirements.txt`**](https://github.com/salomaopena/SuspiciousLoginDataset/public/requirements.txt)
+[**`requirements.txt`**](requirements.txt)
 
 ---
 
@@ -191,11 +191,11 @@ The public attributes are organized into six blocks:
 
 The complete specification is available in:
 
-[**Data Dictionary**](https://github.com/salomaopena/SuspiciousLoginDataset/public/docs/DATA_DICTIONARY.md)
+[**Data Dictionary**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/docs/DATA_DICTIONARY.md)
 
 and:
 
-[**Schema**](docs/SCHEMA.md)
+[**Schema**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/docs/SCHEMA.md)
 
 ### Restricted Schema
 
@@ -281,7 +281,7 @@ Minimum test passed: 73526 events, 42 public attributes
 
 The public notebook:
 
-[**`article_one_results_analysis.ipynb`**](notebooks/article_one_results_analysis.ipynb)
+[**`article_one_results_analysis.ipynb`**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/notebooks/article_one_results_analysis.ipynb)
 
 uses only:
 
@@ -380,7 +380,7 @@ for each actor's first observed event.
 
 The specific rules for each attribute are provided in the:
 
-[**Data Dictionary**](docs/DATA_DICTIONARY.md)
+[**Data Dictionary**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/docs/DATA_DICTIONARY.md)
 
 ---
 
@@ -419,7 +419,7 @@ RELEASE VALIDATION: PASS
 
 The exported validation report can be consulted at:
 
-[**Final Release Validation Report**](docs/FINAL_RELEASE_VALIDATION.txt)
+[**Final Release Validation Report**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/data/dataset_manifest_v2.json)
 
 ---
 
@@ -445,7 +445,7 @@ The exact reconstruction of the 73,526 original events is not public because it 
 
 More details:
 
-[**Installation and Replication Guide**](docs/INSTALLATION_AND_REPLICATION.md)
+[**Installation and Replication Guide**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/INSTALLATION_AND_REPLICATION.md)
 
 ---
 
@@ -465,11 +465,11 @@ The release is accompanied by a machine-readable manifest containing information
 
 See:
 
-[**Dataset Manifest**](data/dataset_manifest_v2.json)
+[**Dataset Manifest**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/data/dataset_manifest_v2.json)
 
 and:
 
-[**Data Audit Report**](docs/DATA_AUDIT_REPORT.md)
+[**Data Audit Report**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/DATA_AUDIT_REPORT.md)
 
 ---
 
