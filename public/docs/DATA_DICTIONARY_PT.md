@@ -1,4 +1,5 @@
 # Data Dictionary Mestre — SuspiciousLogin v2.0
+
 ## Esquema Científico Consolidado (42 Públicos / 50 Restritos)
 
 - **Esquema Público:** 42 atributos observados e derivados determinísticos.
@@ -21,6 +22,7 @@
 
 
 ### 1.1 Identificação e Bloco A — Temporal (7 Atributos)
+
 Todos os atributos temporais são referenciados exclusivamente em **UTC**.
 
 | # | Atributo | Tipo | Origem / Dependência | Definição Operacional | Regra de *Missing* |

@@ -471,11 +471,11 @@ The release is accompanied by a machine-readable manifest containing information
 
 See:
 
-[**Dataset Manifest**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/d2e4070ef1e289f2537e33baee5816685e8af2d7/public/data/dataset_manifest_v2.json)
+[**Dataset Manifest**](public/data/dataset_manifest_v2.json)
 
 and:
 
-[**Data Audit Report**](https://github.com/salomaopena/SuspiciousLoginDataset/blob/1c1cb0df5e5794a4c136cf0eb9d44f3a82192389/public/docs/DATA_AUDIT_REPORT.md)
+[**Data Audit Report**](public/docs/DATA_AUDIT_REPORT.md)
 
 ---
 
