@@ -14,7 +14,7 @@ from restricted.src.processed import sha256_file
 PUBLIC = [
     "event_id", "actor_pseudo_id", "event_time_hour_utc", "ip_country",
     "ip_version", "login_type", "login_challenge_method", "prior_event_count",
-    "history_available", "hours_since_last_login", "days_since_first_observed_login",
+    "history_available", "hours_since_last_login", "hours_since_first_observed_login",
     "logins_24h", "logins_7d", "logins_30d", "is_new_ip", "is_new_country",
     "country_changed", "countries_seen_24h", "countries_seen_30d", "provider_suspicious",
 ]
@@ -91,7 +91,7 @@ def validate(folder):
                 first = t
             values = {"prior_event_count": prior, "history_available": int(prior > 0),
                       "hours_since_last_login": np.nan if previous is None else np.round((t - previous).total_seconds() / 3600, 4),
-                      "days_since_first_observed_login": np.round((t - first).total_seconds() / 86400, 4),
+                      "hours_since_first_observed_login": np.round((t - first).total_seconds() / 86400, 4),
                       "is_new_ip": np.nan if pd.isna(ip) else int(ip not in ips),
                       "is_new_country": np.nan if pd.isna(country) else int(country not in countries),
                       "country_changed": int(previous is not None and pd.notna(country) and

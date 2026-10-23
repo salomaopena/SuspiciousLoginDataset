@@ -102,7 +102,7 @@ NUMERIC_FEATURES = [
     "distinct_cities_cumulative", "country_changed", "continent_changed",
     "countries_seen_30d", "regions_seen_30d", "cities_seen_30d",
     "logins_24h", "logins_7d", "logins_30d", "avg_logins_per_day",
-    "hours_since_last_login", "days_since_first_login",
+    "hours_since_last_login", "hours_since_first_observed_login",
     "abnormal_login_hour", "abnormal_weekday",
     "impossible_travel", "travel_distance_km", "travel_speed_kmh",
     "multiple_country_logins_24h", "distinct_users_per_network_24h",

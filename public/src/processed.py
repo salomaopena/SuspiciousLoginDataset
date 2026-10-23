@@ -518,8 +518,8 @@ def process(raw_files=None, output_dir=None, strict_country_window_guard=True):
     )
 
     first_time = df.groupby("actor_pseudo_id")["event_time"].transform("min")
-    df["days_since_first_observed_login"] = (
-        (df["event_time"] - first_time).dt.total_seconds() / 86400.0
+    df["hours_since_first_observed_login"] = (
+        (df["event_time"] - first_time).dt.total_seconds() / 3600.0
     ).round(4)
 
     # Login counts.
@@ -644,7 +644,7 @@ def process(raw_files=None, output_dir=None, strict_country_window_guard=True):
         "prior_event_count": df["prior_event_count"],
         "history_available": df["history_available"],
         "hours_since_last_login": df["hours_since_last_login"],
-        "days_since_first_observed_login": df["days_since_first_observed_login"],
+        "hours_since_first_observed_login": df["hours_since_first_observed_login"],
         "logins_24h": df["logins_24h"],
         "logins_7d": df["logins_7d"],
         "logins_30d": df["logins_30d"],
@@ -668,7 +668,7 @@ def process(raw_files=None, output_dir=None, strict_country_window_guard=True):
         "prior_event_count": df["prior_event_count"],
         "history_available": df["history_available"],
         "hours_since_last_login": df["hours_since_last_login"],
-        "days_since_first_observed_login": df["days_since_first_observed_login"],
+        "hours_since_first_observed_login": df["hours_since_first_observed_login"],
         "logins_24h": df["logins_24h"],
         "logins_7d": df["logins_7d"],
         "logins_30d": df["logins_30d"],
